@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+
+        <meta charset="UTF-8">
+        <title>Wystaw fakture</title>
+    </head>
+    <body>
+        <div th:replace="header :: myheader"></div>
+
+        <form th:action="@{/addInvoice}"
+              th:object="${invoiceCommand}" method="POST">
+
+            <div class="row g-3">
+                <div class="col-12">
+                    <label for="*{contract}" class="form-label">
+                        Kontrakt:
+                    </label>
+                    <select class="form-select" th:field="*{contract.contractNumber}" required>
+                        <option value=""></option>
+                        <option th:each="u : ${contracts}"
+                                th:value="${u.getContractNumber()}"
+                                th:utext="${u.getContractNumber()}"/>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label class="form-label">
+                        Data sprzedaży
+                    </label>
+                </div>
+                <div class="col-3">
+                    <label class="form-label">
+                        Data wystawienia
+                    </label>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">
+                        Termin zapłąty
+                    </label>
+                </div>
+                <div class="col-1">
+                    <label for="*{day}" class="form-label">
+                        Dzień
+                    </label>
+                    <input type="text" class="form-control" th:field="*{saleDate.day}" th:value="*{saleDate.day}"/>
+                </div>
+                <div class="col-1">
+                    <label for="*{mont}" class="form-label">
+                        Miesiąc
+                    </label>
+                    <input type="text" class="form-control" th:field="*{saleDate.month}" th:value="*{saleDate.month}"/>
+                </div>
+                <div class="col-1">
+                    <label for="*{year}" class="form-label">
+                        Rok
+                    </label>
+                    <input type="text" class="form-control" th:field="*{saleDate.year}" th:value="*{saleDate.year}"/>
+                </div>
+
+                <div class="col-1">
+                    <label for="*{day}" class="form-label">
+                        Dzień
+                    </label>
+                    <input type="text" class="form-control" th:field="*{dateOfIssue.day}" th:value="*{dateOfIssue.day}"/>
+                </div>
+                <div class="col-1">
+                    <label for="*{mont}" class="form-label">
+                        Miesiąc
+                    </label>
+                    <input type="text" class="form-control" th:field="*{dateOfIssue.month}" th:value="*{dateOfIssue.month}"/>
+                </div>
+                <div class="col-1">
+                    <label for="*{year}" class="form-label">
+                        Rok
+                    </label>
+                    <input type="text" class="form-control" th:field="*{dateOfIssue.year}" th:value="*{dateOfIssue.year}"/>
+                </div>
+
+                <div class="col-1">
+                    <label for="*{day}" class="form-label">
+                        Dzień
+                    </label>
+                    <input type="text" class="form-control" th:field="*{dateOfPayment.day}" th:value="*{dateOfPayment.day}"/>
+                </div>
+                <div class="col-1">
+                    <label for="*{mont}" class="form-label">
+                        Miesiąc
+                    </label>
+                    <input type="text" class="form-control" th:field="*{dateOfPayment.month}" th:value="*{dateOfPayment.month}"/>
+                </div>
+                <div class="col-1">
+                    <label for="*{year}" class="form-label">
+                        Rok
+                    </label>
+                    <input type="text" class="form-control" th:field="*{dateOfPayment.year}" th:value="*{dateOfPayment.year}"/>
+                </div>
+                <div class="col-12">
+                    <label for="*{year}" class="form-label">
+                        Ilość godzin
+                    </label>
+                    <input type="text" class="form-control" th:field="*{numberOfHours}" required />
+                </div>
+            </div>
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Dodaj</button>
+        </form>
+
+    </body>
+</html>

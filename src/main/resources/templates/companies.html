@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Firmy</title>
+</head>
+<body>
+
+<div th:replace="header :: myheader"></div>
+
+    <table border="1">
+        <tr>
+            <th>Nazwa</th>
+            <th>Number konta</th>
+            <th>Bank</th>
+            <th>Status</th>
+            <th>Włącz/Wyłącz</th>
+        </tr>
+        <tr th:each="company : ${companies}">
+            <td th:utext="${company.getName()}"></td>
+            <td th:utext="${company.getBank().getNumber()}"></td>
+            <td th:utext="${company.getBank().getName()}"></td>
+            <td th:utext="${company.isActive()}"></td>
+            <td>
+                <form th:action="@{disableCompany}" method="post" th:object="${companyModel}">
+                    <input th:type="hidden" th:name="id" th:value="${company.id}" />
+                    <button type="submit" value="Submit" class="btn btn-danger">Włącz/Wyłącz</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

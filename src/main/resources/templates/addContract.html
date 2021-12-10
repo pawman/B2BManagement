@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="header :: myheader"></div>
+
+    <form th:action="@{/addContract}"
+          th:object="${contract}" method="POST">
+
+        <div class="row g-3">
+            <div class="col-12">
+                <label for="*{nip}" class="form-label">
+                    Numer kontraktu:
+                </label>
+                <input type="text" class="form-control" th:field="*{contractNumber}" />
+            </div>
+            <div class="col-12">
+                <label for="*{nip}" class="form-label">
+                    Kwota za godzine
+                </label>
+                <input type="text" class="form-control" th:field="*{hourlyRate}" />
+            </div>
+            <div class="col-12">
+                <label for="*{contract}" class="form-label">
+                    Sprzedający:
+                </label>
+                <select class="form-select" th:field="*{seller.id}">
+                    <option value="">---</option>
+                    <option th:each="u : ${companies}"
+                            th:value="${u.getId()}"
+                            th:utext="${u.getName()}"/>
+                </select>
+            </div>
+            <div class="col-12">
+                <label for="*{contract}" class="form-label">
+                    Kupujący:
+                </label>
+                <select class="form-select" th:field="*{buyer.id}">
+                    <option value="">---</option>
+                    <option th:each="u : ${companies}"
+                            th:value="${u.getId()}"
+                            th:utext="${u.getName()}"/>
+                </select>
+            </div>
+        </div>
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Dodaj</button>
+    </form>
+
+</body>
+</html>

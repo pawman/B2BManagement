@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="header :: myheader"></div>
+
+    <form th:action="@{/addCompany}"
+          th:object="${company}" method="POST">
+
+        <div class="row g-3">
+            <div class="col-12">
+                <label for="*{nip}" class="form-label">
+                    Nazwa firmy:
+                </label>
+                <input type="text" class="form-control" th:field="*{name}" />
+            </div>
+            <div class="col-12">
+                <label for="*{nip}" class="form-label">
+                    Regon
+                </label>
+                <input type="text" class="form-control" th:field="*{regon}" />
+            </div>
+            <div class="col-12">
+                <label for="*{nip}" class="form-label">
+                    Bank
+                </label>
+                <input type="text" class="form-control" th:field="*{bank.name}" />
+            </div>
+            <div class="col-12">
+                <label for="*{nip}" class="form-label">
+                    Konto bankowe
+                </label>
+                <input type="text" class="form-control" th:field="*{bank.number}" />
+            </div>
+            <select class="form-select" th:field="*{user.id}">
+                <option value="">---</option>
+                <option th:each="u : ${users}"
+                        th:value="${u.getId()}"
+                        th:utext="${u.getDisplayName()}"/>
+            </select>
+        </div>
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Dodaj</button>
+    </form>
+
+</body>
+</html>
