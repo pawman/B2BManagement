@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 @Controller
 public class ContractController extends DefaultController {
 
-    private static final String ADD_CONTRACT = "/addContract";
     public static final String CONTRACTS = "contracts";
+    private static final String ADD_CONTRACT = "/addContract";
 
     public ContractController(GetDataService getDataService, SaveDataService saveDataService) {
         super(getDataService, saveDataService);
@@ -25,7 +25,7 @@ public class ContractController extends DefaultController {
 
 
     @GetMapping("/contracts")
-    public String showUsers(Model model){
+    public String showUsers(Model model) {
         model.addAttribute("contracts", getDataService.contracts());
         model.addAttribute("contractModel", new Contract());
         return CONTRACTS;
@@ -39,7 +39,7 @@ public class ContractController extends DefaultController {
     }
 
     @PostMapping("/addContract")
-    public String addUser(@ModelAttribute("contract") Contract contract){
+    public String addUser(@ModelAttribute("contract") Contract contract) {
         Optional<Company> seller = getDataService.getCompaniesById(contract.getSeller().getId());
 
         Optional<Company> buyer = getDataService.getCompaniesById(contract.getBuyer().getId());
@@ -53,7 +53,7 @@ public class ContractController extends DefaultController {
     }
 
     @PostMapping("/disableContract")
-    public String disableContract(@ModelAttribute("contractModel") Contract contract){
+    public String disableContract(@ModelAttribute("contractModel") Contract contract) {
         saveDataService.disableContract(contract.getContractNumber());
         return redirect(CONTRACTS);
     }

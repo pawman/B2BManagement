@@ -1,7 +1,13 @@
 package com.pawman.b2bmanagement.model;
 
-import javax.persistence.*;
-import java.sql.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 
 @Entity
@@ -31,6 +37,17 @@ public class Company {
 
     private boolean active = true;
 
+    public Company(String regon, String name, Bank bank, User user) {
+        this.regon = regon;
+        this.name = name;
+        this.bank = bank;
+        this.user = user;
+    }
+
+    public Company() {
+
+    }
+
     public boolean isActive() {
         return active;
     }
@@ -53,17 +70,6 @@ public class Company {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Company(String regon, String name, Bank bank, User user) {
-        this.regon = regon;
-        this.name = name;
-        this.bank = bank;
-        this.user = user;
-    }
-
-    public Company() {
-
     }
 
     public User getUser() {

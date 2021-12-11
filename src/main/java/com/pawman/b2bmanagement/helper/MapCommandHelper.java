@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MapCommandHelper {
 
-    public Company mapAddCompanyCommandToCompany(AddCompanyCommand companyCommand, User user, Bank bank){
+    public Company mapAddCompanyCommandToCompany(AddCompanyCommand companyCommand, User user, Bank bank) {
         return new Company(
                 companyCommand.getRegon(),
                 companyCommand.getCompanyName(),
@@ -19,21 +19,21 @@ public class MapCommandHelper {
         );
     }
 
-    public User mapAddCompanyCommandToPerson(AddCompanyCommand companyCommand, Address address){
+    public User mapAddCompanyCommandToPerson(AddCompanyCommand companyCommand, Address address) {
         return new User(
                 companyCommand.getPerson().getPesel(),
                 companyCommand.getPerson().getFirstName(),
                 companyCommand.getPerson().getLastName(),
                 companyCommand.getPerson().getNip(),
                 address
-                );
+        );
     }
 
-    public Address mapAddCompanyCommandToAddress(AddCompanyCommand companyCommand){
+    public Address mapAddCompanyCommandToAddress(AddCompanyCommand companyCommand) {
         return new Address(companyCommand.getPerson().getAddress());
     }
 
-    public Bank mapAddCompanyCommandToBank(AddCompanyCommand companyCommand){
+    public Bank mapAddCompanyCommandToBank(AddCompanyCommand companyCommand) {
         return new Bank(companyCommand.getBank());
     }
 }

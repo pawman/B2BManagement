@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class MainController {
 
-    private MapCommandHelper mapCommandHelper;
-    private SaveDataService saveDataService;
+    private final MapCommandHelper mapCommandHelper;
+    private final SaveDataService saveDataService;
 
     public MainController(MapCommandHelper mapCommandHelper, SaveDataService saveDataService) {
         this.mapCommandHelper = mapCommandHelper;

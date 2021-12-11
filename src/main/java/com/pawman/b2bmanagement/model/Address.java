@@ -39,7 +39,7 @@ public class Address {
         this.city = address.city;
         this.street = address.street;
         this.number = address.number;
-        this.postalCode = address.postalCode;;
+        this.postalCode = address.postalCode;
     }
 
     public String getPostalCode() {

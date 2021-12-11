@@ -6,6 +6,7 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,8 @@ public class SlownieHelper {
 
         try {
             // Construct data
-            String data = URLEncoder.encode("key1", "UTF-8") + "=" + URLEncoder.encode("value1", "UTF-8");
-            data += "&" + URLEncoder.encode("key2", "UTF-8") + "=" + URLEncoder.encode("value2", "UTF-8");
+            String data = URLEncoder.encode("key1", StandardCharsets.UTF_8) + "=" + URLEncoder.encode("value1", StandardCharsets.UTF_8);
+            data += "&" + URLEncoder.encode("key2", StandardCharsets.UTF_8) + "=" + URLEncoder.encode("value2", StandardCharsets.UTF_8);
 
             // Send data
             URL url = new URL("https://slownie.pl/" + value);

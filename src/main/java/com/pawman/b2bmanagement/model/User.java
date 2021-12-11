@@ -1,6 +1,12 @@
 package com.pawman.b2bmanagement.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,22 +34,8 @@ public class User extends Iterated {
 
     @Column(name = "disabled_from")
     private LocalDateTime disabledFrom;
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     private boolean active = true;
 
-
-
-    public void setUserMaster(UserMaster userMaster) {
-        this.userMaster = userMaster;
-    }
     public User(User user) {
         this.pesel = user.pesel;
         this.firstName = user.firstName;
@@ -65,7 +57,31 @@ public class User extends Iterated {
         this.active = active;
     }
 
-    public String getDisplayName(){
+
+    public User() {
+    }
+
+    public User(String pesel, String firstName, String lastName, String nip, Address address) {
+        this.pesel = pesel;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nip = nip;
+        this.address = address;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setUserMaster(UserMaster userMaster) {
+        this.userMaster = userMaster;
+    }
+
+    public String getDisplayName() {
         return firstName + " " + lastName;
     }
 
@@ -83,17 +99,6 @@ public class User extends Iterated {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public User() {
-    }
-
-    public User(String pesel, String firstName, String lastName, String nip, Address address) {
-        this.pesel = pesel;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nip = nip;
-        this.address = address;
     }
 
     public Address getAddress() {

@@ -7,7 +7,9 @@ import com.pawman.b2bmanagement.service.GetDataService;
 import com.pawman.b2bmanagement.service.SaveDataService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Comparator;
 import java.util.List;
@@ -17,9 +19,9 @@ import java.util.stream.Collectors;
 @Controller()
 public class UserController extends DefaultController {
 
-    private static final String ADD_USER = "/addUser";
     public static final String USERS = "users";
     public static final String EDIT_USER = "/editUser";
+    private static final String ADD_USER = "/addUser";
 
     public UserController(GetDataService getDataService, SaveDataService saveDataService) {
         super(getDataService, saveDataService);
@@ -49,7 +51,7 @@ public class UserController extends DefaultController {
     }
 
     @PostMapping("/addUser")
-    public String addUser(@ModelAttribute("user") User user){
+    public String addUser(@ModelAttribute("user") User user) {
         UserMaster userMaster = saveDataService.saveUserMaster(new UserMaster());
         Address address = saveDataService.saveAddress(user.getAddress());
         user.setAddress(address);
@@ -71,7 +73,7 @@ public class UserController extends DefaultController {
     }
 
     @PostMapping("/editUser")
-    public String editUser(@ModelAttribute("user") User user){
+    public String editUser(@ModelAttribute("user") User user) {
         saveDataService.disableUser(user.getId());
 
         UserMaster master = getDataService.getUserMasterById(user.getUserMaster().getId());
@@ -86,13 +88,13 @@ public class UserController extends DefaultController {
     }
 
     @PostMapping("/deleteUser")
-    public String deleteUser(@ModelAttribute("userModel") User user){
+    public String deleteUser(@ModelAttribute("userModel") User user) {
         saveDataService.deleteUser(user.getId());
         return redirect(USERS);
     }
 
     @PostMapping("/disableUser")
-    public String disableUser(@ModelAttribute("userModel") User user){
+    public String disableUser(@ModelAttribute("userModel") User user) {
         saveDataService.disableUser(user.getId());
         return redirect(USERS);
     }

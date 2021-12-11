@@ -26,7 +26,7 @@ public class CompanyController extends DefaultController {
     }
 
     @GetMapping("/companies")
-    public String showCompanies(Model model){
+    public String showCompanies(Model model) {
         List<Company> companies = getDataService.getCompanies();
         model.addAttribute("companies", companies);
         model.addAttribute("companyModel", new Company());
@@ -51,6 +51,7 @@ public class CompanyController extends DefaultController {
 
         return redirect(COMPANIES);
     }
+
     @PostMapping("/disableCompany")
     public String disableCompany(@ModelAttribute("companyModel") Company company) {
         saveDataService.disableCompany(company.getId());

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class DataModel {
     private int day;
-    private  int month;
+    private int month;
     private int year;
 
     public DataModel() {

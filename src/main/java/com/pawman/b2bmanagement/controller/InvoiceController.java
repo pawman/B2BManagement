@@ -22,15 +22,15 @@ import java.util.stream.Collectors;
 @Controller
 public class InvoiceController extends DefaultController {
 
-    private static final String ADD_INVOICE = "/addInvoice";
     public static final String INVOICES = "invoices";
+    private static final String ADD_INVOICE = "/addInvoice";
 
     public InvoiceController(GetDataService getDataService, SaveDataService saveDataService) {
         super(getDataService, saveDataService);
     }
 
     @GetMapping("/invoices")
-    public String invoices(Model model){
+    public String invoices(Model model) {
         model.addAttribute("invoices", getDataService.invoices());
         model.addAttribute("invoiceModel", new Invoice());
         return INVOICES;
@@ -56,7 +56,7 @@ public class InvoiceController extends DefaultController {
     }
 
     @PostMapping("/addInvoice")
-    public String addUser(@ModelAttribute("invoiceCommand") InvoiceCommand invoiceCommand){
+    public String addUser(@ModelAttribute("invoiceCommand") InvoiceCommand invoiceCommand) {
 
         Optional<Contract> contract = getDataService.getContractById(invoiceCommand.getContract().getContractNumber());
 

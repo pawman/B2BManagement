@@ -12,12 +12,12 @@ public class Iterated {
 
     protected int version = 1;
 
-    public void setUserMaster(UserMaster userMaster) {
-        this.userMaster = userMaster;
-    }
-
     public UserMaster getUserMaster() {
         return userMaster;
+    }
+
+    public void setUserMaster(UserMaster userMaster) {
+        this.userMaster = userMaster;
     }
 
     public int getVersion() {
