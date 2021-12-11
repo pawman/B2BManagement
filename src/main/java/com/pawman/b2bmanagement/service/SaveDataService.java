@@ -1,7 +1,19 @@
 package com.pawman.b2bmanagement.service;
 
-import com.pawman.b2bmanagement.model.*;
-import com.pawman.b2bmanagement.repository.*;
+import com.pawman.b2bmanagement.model.Address;
+import com.pawman.b2bmanagement.model.Bank;
+import com.pawman.b2bmanagement.model.Company;
+import com.pawman.b2bmanagement.model.Contract;
+import com.pawman.b2bmanagement.model.Invoice;
+import com.pawman.b2bmanagement.model.User;
+import com.pawman.b2bmanagement.model.UserMaster;
+import com.pawman.b2bmanagement.repository.AddressRepository;
+import com.pawman.b2bmanagement.repository.BankRepository;
+import com.pawman.b2bmanagement.repository.CompanyRepository;
+import com.pawman.b2bmanagement.repository.ContractRepository;
+import com.pawman.b2bmanagement.repository.InvoiceRepository;
+import com.pawman.b2bmanagement.repository.UserMasterRepository;
+import com.pawman.b2bmanagement.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
