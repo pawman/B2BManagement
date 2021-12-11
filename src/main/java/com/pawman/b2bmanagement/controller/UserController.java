@@ -1,6 +1,5 @@
 package com.pawman.b2bmanagement.controller;
 
-import com.pawman.b2bmanagement.helper.ExcelHelper;
 import com.pawman.b2bmanagement.model.Address;
 import com.pawman.b2bmanagement.model.User;
 import com.pawman.b2bmanagement.model.UserMaster;
@@ -16,7 +15,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller()
-@RequestMapping("b2")
 public class UserController extends DefaultController {
 
     private static final String ADD_USER = "/addUser";
@@ -28,8 +26,7 @@ public class UserController extends DefaultController {
     }
 
     @GetMapping("/users")
-    public String showUsers(Model model) throws Exception {
-        ExcelHelper.saveXls();
+    public String showUsers(Model model) {
         model.addAttribute("users", getDataService.getActiveUsers());
         model.addAttribute("userModel", new User());
         return USERS;
@@ -37,7 +34,7 @@ public class UserController extends DefaultController {
 
     private User getLatestIteration(UserMaster userMaster) {
         List<User> usersByUserMaster = getDataService.getUsersByUserMaster(userMaster);
-        return usersByUserMaster.stream().max(Comparator.comparingLong(User::getVersion)).get();
+        return usersByUserMaster.stream().max(Comparator.comparingLong(User::getVersion)).orElse(null);
     }
 
     private List<User> getAllIteration(UserMaster userMaster) {
@@ -62,10 +59,14 @@ public class UserController extends DefaultController {
     }
 
     @GetMapping("/editUser")
-    public String showeditUser(Model model, @ModelAttribute("userModel") User user) {
+    public String showEditUser(Model model, @ModelAttribute("userModel") User user) {
         Optional<User> userById = getDataService.getUserById(user.getId());
 
-        model.addAttribute("user", userById.get());
+        User tempUser = new User();
+        if (userById.isPresent()) {
+            tempUser = userById.get();
+        }
+        model.addAttribute("user", tempUser);
         return EDIT_USER;
     }
 
